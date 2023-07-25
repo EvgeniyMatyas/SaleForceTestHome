@@ -1,14 +1,17 @@
 package tests.base;
 
 import com.github.dockerjava.api.model.ContainerMount;
+import lombok.extern.log4j.Log4j2;
+import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
-
+import utils.AllureUtils;
+@Log4j2
 public class TestListener implements ITestListener {
     @Override
     public void onTestStart(ITestResult result) {
-        System.out.printf("Test started: %s \n", result.getName());
+        log.info(">>>>>>>>>>>>>>>>>>>TEST START: " +result.getName() + "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<" );
     }
 
     @Override
@@ -18,7 +21,9 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onTestFailure(ITestResult result) {
-        System.out.printf("Test failure: %s \n", result.getName());
+        WebDriver driver = (WebDriver)result.getTestContext().getAttribute("driver");
+        AllureUtils.takeScreenShot(driver);
+        log.info(">>>>>>>>>>>>>>>>>>>TEST FAIL: " +result.getName() + "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<" );
     }
 
     @Override

@@ -2,6 +2,8 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.NoSuchElementException;
@@ -19,6 +21,11 @@ public abstract class BasePage {
 
         this.driver = driver;
         wait = new WebDriverWait(driver,10);
+    }
+
+    public String waitAndGetText(By locator){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        return driver.findElement(locator).getText();
     }
     public abstract boolean isPageOpen();
 

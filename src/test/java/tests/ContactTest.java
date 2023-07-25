@@ -9,7 +9,7 @@ public class ContactTest extends BaseTest {
     @Test(description = "Проверка поля Contact с валидными данными")
     public void contactShouldBeCreated() {
         loginPage.openSaleForce()
-                .loginAndPassword("ewebof-bvrk@force.com","123456789J")
+                .loginAndPassword("oxodpub-cnkg@force.com","123456789J")
                 .clickLogInButton();
         contactListPage.openContactPage()
                 .clickNewButton();
